@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[A\u001b[B\u001b[A\u001b[n\u001b[B\u001b[Bregister-login"
+  },
+  "keywords": [
+    "authentification",
+    "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Cuser",
+    "authentification",
+    "nodejs",
+    "vuejs",
+    "mysql"
+  ],
+  "author": "cedric batina",
+  "license": "ISC"
+}
