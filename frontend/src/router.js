@@ -12,12 +12,17 @@ export const router = new Router({
   routes: [
     { name: "Home", path: "/", component: Home },
     { name: "Login", path: "/login", component: Login },
-    { name: "Register", path: "/signup", component: Register },
+    { name: "Register", path: "/register", component: Register },
+    {
+      name: "Profile",
+      path: "/",
+      component: () => import("./views/Profile.vue"),
+    },
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  const publicPages = ["/", "/login", "/signup"];
+router.beforeEach((to, _from, next) => {
+  const publicPages = ["/", "/login", "/register"];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");
 

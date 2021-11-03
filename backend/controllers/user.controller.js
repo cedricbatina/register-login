@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const database = require("../database.config").default;
+const User = require("../models/user.model");
 
 const jwt = require("jsonwebtoken");
 
@@ -14,13 +15,12 @@ exports.signup = (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         password: hash,
-        pic: req.body.pic,
       });
       //Enregistrement du new user dans la base de données
-      let sql = `INSERT INTO User(name, email, password, pic) VALUES ("${uuid.v5()}", ${database.escape(
+      let sql = `INSERT INTO user(name, email, password) VALUES ("${uuid.v5()}", ${database.escape(
         hash
       )}, now() )`;
-      let values = [user.name, user.email, user.password, user.pic];
+      let values = [user.name, user.email, user.password];
       database.query(sql, [values], function (err) {
         console.log(err);
         if (err) {
@@ -39,12 +39,15 @@ exports.signup = (req, res, next) => {
             //Encodage d'un nouveau token
             token: jwt.sign(
               { userId: data[0].id, name: data[0].name },
-              "x-access-token",
+              "CEDRIC_BATINA_TOKEN_SECRET",
               { expiresIn: "24h" }
             ),
           });
         });
       });
+      database.query(
+        `INSERT INTO user(registered) VALUES (now()) WHERE email = $(req.body.email)`
+      );
     })
     .catch((error) => res.status(500).json({ error }));
   console.log(error);
@@ -76,7 +79,7 @@ exports.login = (req, res, next) => {
             ),
           });
           database.query(
-            `UPDATE user SET lastLogin = now() WHERE id = $(data[o].id`
+            `UPDATE user SET lastLogin = now() WHERE id = $(data[o].id)`
           );
           if (err) {
             return res.status(405).json({
