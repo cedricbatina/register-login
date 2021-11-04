@@ -15,7 +15,7 @@ export const router = new Router({
     { name: "Register", path: "/register", component: Register },
     {
       name: "Profile",
-      path: "/",
+      path: "/user",
       component: () => import("./views/Profile.vue"),
     },
   ],

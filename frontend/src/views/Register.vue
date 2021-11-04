@@ -10,50 +10,50 @@
         <div v-if="!successful">
           <!--label for name-->
           <div class="form-group">
-            <ValidationProvider
+            <label for="ame">Name :</label>
+            <input
+              v-model="user.name"
+              v-validate="'required|min:3|max:20'"
+              type="text"
+              class="form-control"
               name="name"
-              rules="required"
-              v-slot="{ errors }"
-            >
-              <input type="text" v-model="user.name" />
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!--<div v-if="submitted && errors.has('name')" class="alert-danger">
+            />
+            <div v-if="submitted && errors.has('name')" class="alert-danger">
               {{ errors.first("name") }}
-            </div>-->
+            </div>
           </div>
 
           <!--label for email-->
           <div class="form-group">
-            <ValidationProvider
-              name="name"
-              rules="required"
-              v-slot="{ errors }"
-            >
-              <input type="email" v-model="user.email" />
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!--<div v-if="submitted && errors.has('email')" class="alert-danger">
+            <label for="email">Email :</label>
+            <input
+              v-model="user.email"
+              v-validate="'required|min:3|max:20'"
+              type="email"
+              class="form-control"
+              name="email"
+            />
+            <div v-if="submitted && errors.has('email')" class="alert-danger">
               {{ errors.first("email") }}
-            </div>-->
+            </div>
           </div>
           <!--label for password-->
 
           <div class="form-group">
-            <ValidationProvider
-              name="name"
-              rules="required"
-              v-slot="{ errors }"
-            >
-              <input type="password" v-model="user.password" />
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!--<div
+            <label for="password">Password :</label>
+            <input
+              v-model="user.password"
+              v-validate="'required|min:3|max:20'"
+              type="password"
+              class="form-control"
+              name="password"
+            />
+            <div
               v-if="submitted && errors.has('password')"
               class="alert-danger"
             >
               {{ errors.first("password") }}
-            </div>-->
+            </div>
           </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block">Sign up</button>
@@ -92,7 +92,7 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/user");
     }
   },
   methods: {

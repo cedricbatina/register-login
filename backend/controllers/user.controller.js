@@ -99,4 +99,5 @@ exports.login = (req, res, next) => {
     .catch((error) => {
       res.status(502).json({ error: error });
     });
+  next();
 };
